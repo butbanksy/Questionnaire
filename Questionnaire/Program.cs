@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Questionnaire.Helpers.DIHelpers;
+using Questionnaire.Helpers.GeneralHelpers;
 using Questionnaire.Helpers.StringHelpers;
 using Questionnaire.Interfaces.Services;
 using Questionnaire.Models;
@@ -15,6 +16,7 @@ namespace Questionnaire
 
             string username = "";
             string email = "";
+            int answerIndex;
 
             //register services
             //register dependecies
@@ -23,6 +25,8 @@ namespace Questionnaire
 
             //get service instance
             IQuestionService questionServices = serviceProvider.GetService<IQuestionService>();
+            IUserService userService = serviceProvider.GetService<IUserService>();
+            IAnswerService answerService = serviceProvider.GetService<IAnswerService>();
 
 
             //Get Services
@@ -61,10 +65,24 @@ namespace Questionnaire
 
             //Showing questions
             var questions = questionServices.GetQuestions();
-            questions.ToList().ForEach(q => Console.WriteLine(q));
+            questions.ToList().ForEach(q => {
+                Console.WriteLine(q);
+                
 
+                // to check if the answer is valide
+                bool state;
+                do
+                {
+                    Console.Write("Answer (In range of options) :");
+                    state = int.TryParse(Console.ReadLine(), out answerIndex);
+                } while (state == false);
 
+                Answer answer = answerService.GetAnswer(new int[]{ answerIndex }, q);
 
+                userService.AddAnswer(user, answer);                
+            });
+
+            userService.AddUser(user);
 
         }
 
