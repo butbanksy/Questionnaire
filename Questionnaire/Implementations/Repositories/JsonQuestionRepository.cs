@@ -9,7 +9,7 @@ namespace Questionnaire.Implementations.Repositories
 {
     public class JsonQuestionRepository : IQuestionRepository
     {
-        private readonly IEnumerable<Question> _questions;
+        private IEnumerable<Question> _questions;
 
         public JsonQuestionRepository()
         {
