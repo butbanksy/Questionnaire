@@ -15,7 +15,7 @@ namespace Questionnaire.Models
 
         public override string ToString()
         {
-            string options = String.Join("\t", Options.ToList().Select((option, i) => $"({i + 1}) {option}"));
+            string options = String.Join("\n\t", Options.ToList().Select((option, i) => $"({i + 1}) {option}"));
             return $"\n{Title} \n{options}";
         }
     }

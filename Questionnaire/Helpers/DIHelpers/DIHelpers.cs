@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Questionnaire.Implementations.Repositories;
 using Questionnaire.Implementations.Services;
+using Questionnaire.Interfaces.Repositories;
 using Questionnaire.Interfaces.Services;
 
 namespace Questionnaire.Helpers.DIHelpers
@@ -15,7 +17,11 @@ namespace Questionnaire.Helpers.DIHelpers
         public static ServiceProvider getServiceProvider()
         {
             return new ServiceCollection()
+                .AddSingleton<IUserRepository, UserRepository>()
+                .AddSingleton<IAnswerRepository, AnswerRepository>()
+                .AddSingleton<IQuestionRepository, JsonQuestionRepository>()
                 .AddSingleton<IUserService, UserServiceImpl>()
+                .AddSingleton<IQuestionService, QuestionServiceImpl>()
                 .AddSingleton<IAnswerService, AnswerServiceImpl>()
                 .BuildServiceProvider();
         }

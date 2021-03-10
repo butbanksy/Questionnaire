@@ -15,7 +15,7 @@ namespace Questionnaire.Implementations.Services
 
         IAnswerRepository _answerRepository;
 
-        AnswerServiceImpl(IAnswerRepository answerRepository)
+        public AnswerServiceImpl(IAnswerRepository answerRepository)
         {
             this._answerRepository = answerRepository;
         }
