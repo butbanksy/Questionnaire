@@ -11,7 +11,6 @@ namespace Questionnaire.Helpers.StringHelpers
 
         public static bool isNullOrEmpty(this string s)
         {
-
             return s == null || s == "";
         }
 

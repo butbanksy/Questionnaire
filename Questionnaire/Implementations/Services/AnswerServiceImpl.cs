@@ -26,7 +26,8 @@ namespace Questionnaire.Implementations.Services
 
         public Answer GetAnswer(int[] indcies, Question q)
         {
-            IEnumerable<Option> options = indcies.Select(i => MainHelpers.getOption(i - 1 , q));
+            IEnumerable<Option> options = indcies.ToList().Select(i => MainHelpers.getOption(i - 1 , q)).ToList();
+           // Option option = MainHelpers.getOption(indcies[0], q);
 
             Answer answer = new Answer()
             {

@@ -71,7 +71,7 @@ namespace Questionnaire
                 {
                     Console.Write("Answer (In range of options) :");
                     state = int.TryParse(Console.ReadLine(), out answerIndex);
-                } while (state == false);
+                } while (state == false || answerIndex > q.Options.Count() || answerIndex < 1);
 
                 Answer answer = answerService.GetAnswer(new int[]{ answerIndex }, q);
 
