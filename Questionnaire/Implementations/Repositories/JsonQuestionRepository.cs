@@ -1,4 +1,5 @@
-﻿using Questionnaire.Interfaces.Repositories;
+﻿using Questionnaire.Helpers;
+using Questionnaire.Interfaces.Repositories;
 using Questionnaire.Models;
 using System.Collections.Generic;
 using System.IO;
@@ -13,14 +14,7 @@ namespace Questionnaire.Implementations.Repositories
 
         public JsonQuestionRepository()
         {
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-            };
-
-            var questionsJson = File.ReadAllText($"../../../Resources/questions.json");
-
-            _questions = JsonSerializer.Deserialize<IEnumerable<Question>>(questionsJson, options);
+            _questions = DataHelper<Question>.LoadJson();
         }
 
         public Question GetQuestionById(int id)

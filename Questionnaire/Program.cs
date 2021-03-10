@@ -1,9 +1,10 @@
-﻿using System.Text.Json;
-using System;
+﻿using System;
+using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
+using Questionnaire.Helpers.DIHelpers;
+using Questionnaire.Helpers.GeneralHelpers;
 using Questionnaire.Helpers.StringHelpers;
 using Questionnaire.Interfaces.Services;
-using System.Linq;
-using Questionnaire.Implementations.Repositories;
 using Questionnaire.Models;
 
 namespace Questionnaire
@@ -12,11 +13,20 @@ namespace Questionnaire
     {
         static void Main(string[] args)
         {
+            /*
             string username = "";
             string email = "";
+            int answerIndex;
 
-            //services
-            IQuestionService questionServices;
+            //register services
+            //register dependecies
+            var serviceProvider = DIHelpers.getServiceProvider();
+
+
+            //get service instance
+            IQuestionService questionServices = serviceProvider.GetService<IQuestionService>();
+            IUserService userService = serviceProvider.GetService<IUserService>();
+            IAnswerService answerService = serviceProvider.GetService<IAnswerService>();
 
 
             //Get Services
@@ -49,20 +59,32 @@ namespace Questionnaire
             User user = new User(username, email);
 
 
-            JsonQuestionRepository json = new JsonQuestionRepository();
-
-            var questions = json.GetQuestions();
             Console.WriteLine("Tape any key to start the Survey");
             Console.ReadLine();
             Console.Clear();
 
-            foreach (var question in questions)
-            {
-                Console.WriteLine($"{question.Id} : {question.Title}");
-            }
+            //Showing questions
+            var questions = questionServices.GetQuestions();
+            questions.ToList().ForEach(q => {
+                Console.WriteLine(q);
+                
 
-            var questionById = json.GetQuestionById(3);
-            Console.WriteLine(questionById.ToString());
+                // to check if the answer is valide
+                bool state;
+                do
+                {
+                    Console.Write("Answer (In range of options) :");
+                    state = int.TryParse(Console.ReadLine(), out answerIndex);
+                } while (state == false);
+
+                Answer answer = answerService.GetAnswer(new int[]{ answerIndex }, q);
+
+                userService.AddAnswer(user, answer);                
+            });
+
+            userService.AddUser(user);
+
         }
+
     }
 }
