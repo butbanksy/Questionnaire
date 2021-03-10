@@ -9,7 +9,10 @@ namespace Questionnaire.Interfaces.Services
 {
     public interface IUserService
     {
-        User AddUser(User user);
+        void AddUser(User user);
         void AddAnswer(User user, Answer answer);
+        IEnumerable<User> GetUsers();
+
+
     }
 }
