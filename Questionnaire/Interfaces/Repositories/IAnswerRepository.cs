@@ -10,7 +10,7 @@ namespace Questionnaire.Interfaces.Repositories
     public interface IAnswerRepository
     {
         IEnumerable<Answer> GetAnswers();
-
+        IEnumerable<Answer> GetAllAnswers();
 
     }
 }

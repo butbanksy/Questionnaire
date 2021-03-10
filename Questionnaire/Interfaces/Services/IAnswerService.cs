@@ -10,5 +10,6 @@ namespace Questionnaire.Interfaces.Services
     interface IAnswerService
     {
         Answer GetAnswer(int[] indecies, Question q);
+        IEnumerable<Answer> GetAllAnswers();
     }
 }
