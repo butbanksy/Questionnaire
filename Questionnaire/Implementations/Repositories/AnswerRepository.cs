@@ -10,6 +10,11 @@ namespace Questionnaire.Implementations.Repositories
 {
     public class AnswerRepository : IAnswerRepository
     {
+        public IEnumerable<Answer> GetAllAnswers()
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Answer> GetAnswers()
         {
             throw new NotImplementedException();

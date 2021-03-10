@@ -13,7 +13,7 @@ namespace Questionnaire
     {
         static void Main(string[] args)
         {
-            /*
+            
             string username = "";
             string email = "";
             int answerIndex;
@@ -77,6 +77,7 @@ namespace Questionnaire
 
                 userService.AddAnswer(user, answer);                
             });
+
 
             userService.AddUser(user);
 
