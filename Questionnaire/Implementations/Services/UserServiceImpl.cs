@@ -25,6 +25,10 @@ namespace Questionnaire.Implementations.Services
         {
             return userRepository.GetUsers();
         }
+        public User GetUserById(int id)
+        {
+            return userRepository.GetUserById(id);
+        }
 
 
     }
