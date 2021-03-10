@@ -5,46 +5,48 @@
     "options": [
       {
         "id": 1,
-        "option": "Almost always"
+        "title": "Almost always"
       },
       {
         "id": 2,
-        "option": "Frequently"
+        "title": "Frequently"
       },
       {
         "id": 3,
-        "option": "Sometimes"
+        "title": "Sometimes"
       },
       {
         "id": 4,
-        "option": "Rarely"
-      }, {
+        "title": "Rarely"
+      },
+      {
         "id": 5,
-        "option": "Almost never"
+        "title": "Almost never"
       }
     ]
   }, {
     "id": 3,
     "Title": "The instructor showed an interest in helping students learn.",
-    "options": [
+    "Options": [
       {
         "id": 1,
-        "option": "Almost always"
+        "title": "Almost always"
       },
       {
         "id": 2,
-        "option": "Frequently"
+        "title": "Frequently"
       },
       {
         "id": 3,
-        "option": "Sometimes"
+        "title": "Sometimes"
       },
       {
         "id": 4,
-        "option": "Rarely"
-      }, {
+        "title": "Rarely"
+      },
+      {
         "id": 5,
-        "option": "Almost never"
+        "title": "Almost never"
       }
     ]
   }, {
@@ -53,22 +55,23 @@
     "options": [
       {
         "id": 1,
-        "option": "Almost always"
+        "title": "Almost always"
       },
       {
         "id": 2,
-        "option": "Frequently"
+        "title": "Frequently"
       },
       {
         "id": 3,
-        "option": "Sometimes"
+        "title": "Sometimes"
       },
       {
         "id": 4,
-        "option": "Rarely"
-      }, {
+        "title": "Rarely"
+      },
+      {
         "id": 5,
-        "option": "Almost never"
+        "title": "Almost never"
       }
     ]
   }, {
@@ -77,22 +80,23 @@
     "options": [
       {
         "id": 1,
-        "option": "Strongly agree"
+        "title": "Strongly agree"
       },
       {
         "id": 2,
-        "option": "Agree"
+        "title": "Agree"
       },
       {
         "id": 3,
-        "option": "Neither agree nor disagree"
+        "title": "Neither agree nor disagree"
       },
       {
         "id": 4,
-        "option": "Disagree"
-      }, {
+        "title": "Disagree"
+      },
+      {
         "id": 5,
-        "option": "Strongly disagree"
+        "title": "Strongly disagree"
       }
     ]
   }, {
@@ -102,22 +106,23 @@
     "options": [
       {
         "id": 1,
-        "option": "Strongly agree"
+        "title": "Strongly agree"
       },
       {
         "id": 2,
-        "option": "Agree"
+        "title": "Agree"
       },
       {
         "id": 3,
-        "option": "Neither agree nor disagree"
+        "title": "Neither agree nor disagree"
       },
       {
         "id": 4,
-        "option": "Disagree"
-      }, {
+        "title": "Disagree"
+      },
+      {
         "id": 5,
-        "option": "Strongly disagree"
+        "title": "Strongly disagree"
       }
     ]
   }, {
@@ -126,22 +131,23 @@
     "options": [
       {
         "id": 1,
-        "option": "Strongly agree"
+        "title": "Strongly agree"
       },
       {
         "id": 2,
-        "option": "Agree"
+        "title": "Agree"
       },
       {
         "id": 3,
-        "option": "Neither agree nor disagree"
+        "title": "Neither agree nor disagree"
       },
       {
         "id": 4,
-        "option": "Disagree"
-      }, {
+        "title": "Disagree"
+      },
+      {
         "id": 5,
-        "option": "Strongly disagree"
+        "title": "Strongly disagree"
       }
     ]
   }, {
@@ -150,22 +156,23 @@
     "options": [
       {
         "id": 1,
-        "option": "Strongly agree"
+        "title": "Strongly agree"
       },
       {
         "id": 2,
-        "option": "Agree"
+        "title": "Agree"
       },
       {
         "id": 3,
-        "option": "Neither agree nor disagree"
+        "title": "Neither agree nor disagree"
       },
       {
         "id": 4,
-        "option": "Disagree"
-      }, {
+        "title": "Disagree"
+      },
+      {
         "id": 5,
-        "option": "Strongly disagree"
+        "title": "Strongly disagree"
       }
     ]
   }, {
@@ -174,22 +181,23 @@
     "options": [
       {
         "id": 1,
-        "option": "Strongly agree"
+        "title": "Strongly agree"
       },
       {
         "id": 2,
-        "option": "Agree"
+        "title": "Agree"
       },
       {
         "id": 3,
-        "option": "Neither agree nor disagree"
+        "title": "Neither agree nor disagree"
       },
       {
         "id": 4,
-        "option": "Disagree"
-      }, {
+        "title": "Disagree"
+      },
+      {
         "id": 5,
-        "option": "Strongly disagree"
+        "title": "Strongly disagree"
       }
     ]
   }
