@@ -14,7 +14,15 @@ namespace Questionnaire.Models
         public DateTime TimeOfCompletion { get; set; }
         public IEnumerable<Answer> Answers { get; set; }
 
+        public User(string name, string email)
+        {
+            Name = name;
+            Email = email;
+        }
 
-
+        public override string ToString()
+        {
+            return $"\n Name : {Name}, Email: {Email}";
+        }
     }
 }
