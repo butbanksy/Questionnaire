@@ -16,6 +16,7 @@ namespace Questionnaire.Models
 
         public User(string name, string email)
         {
+            Id = (int)new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
             Name = name;
             Email = email;
             Answers = new Answer[] { };

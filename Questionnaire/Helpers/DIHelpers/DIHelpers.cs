@@ -17,12 +17,13 @@ namespace Questionnaire.Helpers.DIHelpers
         public static ServiceProvider getServiceProvider()
         {
             return new ServiceCollection()
-                .AddSingleton<IUserRepository, UserRepository>()
+                .AddSingleton<IUserRepository, JsonUserRepository>()
                 .AddSingleton<IAnswerRepository, AnswerRepository>()
                 .AddSingleton<IQuestionRepository, JsonQuestionRepository>()
                 .AddSingleton<IUserService, UserServiceImpl>()
                 .AddSingleton<IQuestionService, QuestionServiceImpl>()
                 .AddSingleton<IAnswerService, AnswerServiceImpl>()
+                .AddSingleton<IStatisticsService, StatisticsService>()
                 .BuildServiceProvider();
         }
     }

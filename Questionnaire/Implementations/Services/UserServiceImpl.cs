@@ -26,7 +26,9 @@ namespace Questionnaire.Implementations.Services
         }
         public void AddAnswer(User user, Answer answer)
         {
-            user.Answers.Append(answer);
+            var answers = user.Answers.ToList();
+            answers.Add(answer);
+            user.Answers = answers;
         }
 
         public IEnumerable<User> GetUsers()

@@ -27,12 +27,30 @@ namespace Questionnaire.Implementations.Repositories
 
         public User GetUserById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                User user = _users.FirstOrDefault(user => user.Id == id);
+                return user;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("No data available");
+                return null;
+            }
         }
 
         public IEnumerable<User> GetUsers()
         {
-            throw new NotImplementedException();
+            return _users;
+            try
+            {
+                return _users.ToList();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Cannot fetch data");
+                return null;
+            }
         }
     }
 }
