@@ -10,5 +10,6 @@ namespace Questionnaire.Interfaces.Services
     public interface IQuestionService
     {
         IEnumerable<Question> GetQuestions();
+        Question GetQuestionById(int id);
     }
 }

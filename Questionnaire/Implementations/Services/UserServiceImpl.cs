@@ -1,4 +1,5 @@
-﻿using Questionnaire.Interfaces.Repositories;
+﻿
+using Questionnaire.Interfaces.Repositories;
 using Questionnaire.Interfaces.Services;
 using Questionnaire.Models;
 using System;
@@ -11,10 +12,17 @@ namespace Questionnaire.Implementations.Services
 {
     class UserServiceImpl : IUserService
     {
-        IUserRepository userRepository;
+        IUserRepository _userRepository;
+
+        private readonly IQuestionRepository _questionRepository;
+
+        public UserServiceImpl(IUserRepository userRepository)
+        {
+            this._userRepository = userRepository;
+        }
         public void AddUser(User user)
         {
-            userRepository.AddUser(user);
+            _userRepository.AddUser(user);
         }
         public void AddAnswer(User user, Answer answer)
         {
@@ -23,7 +31,11 @@ namespace Questionnaire.Implementations.Services
 
         public IEnumerable<User> GetUsers()
         {
-            return userRepository.GetUsers();
+            return _userRepository.GetUsers();
+        }
+        public User GetUserById(int id)
+        {
+            return _userRepository.GetUserById(id);
         }
 
 
