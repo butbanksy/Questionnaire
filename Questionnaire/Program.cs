@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Questionnaire.Helpers.DIHelpers;
 using Questionnaire.Helpers.GeneralHelpers;
 using Questionnaire.Helpers.StringHelpers;
+using Questionnaire.Implementations.Repositories;
 using Questionnaire.Interfaces.Services;
 using Questionnaire.Models;
 
@@ -82,6 +83,5 @@ namespace Questionnaire
             userService.AddUser(user);
 
         }
-
     }
 }
