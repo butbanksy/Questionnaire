@@ -16,27 +16,6 @@ namespace Questionnaire.Helpers
 
             string path = "";
 
-            /*
-            switch (typeof(T))
-            {
-                case typeof(Question):
-                    {
-                        path = $"../../../Resources/questions.json";
-                        break;
-                    }
-                case User:
-                    {
-                        path = $"../../../Resources/users.json";
-                        break;
-                    }
-                default:
-                    {
-                        path = $"../../../Resources/questions.json";
-                        break;
-                    }
-            }
-            */
-
             if(typeof(Question) == typeof(T))
             {
                 path = $"../../../Resources/questions.json";
@@ -55,6 +34,27 @@ namespace Questionnaire.Helpers
             var fileJson = File.ReadAllText(path);
 
             return JsonSerializer.Deserialize<IEnumerable<T>>(fileJson, options);
+
+        }
+
+        public static void SaveJson(IEnumerable<T> _data)
+        {
+
+            string path = "";
+
+            if (typeof(Question) == typeof(T))
+            {
+                path = $"../../../Resources/questions.json";
+                Console.WriteLine(typeof(T));
+            }
+            else if (typeof(User) == typeof(T))
+            {
+                path = $"../../../Resources/users.json";
+            }
+
+            string jsonString = JsonSerializer.Serialize(_data);
+            File.WriteAllText(path, jsonString);
+
 
         }
     }

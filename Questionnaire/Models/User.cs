@@ -19,6 +19,10 @@ namespace Questionnaire.Models
             Name = name;
             Email = email;
         }
+        public User()
+        {
+
+        }
 
         public override string ToString()
         {
