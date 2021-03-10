@@ -32,8 +32,9 @@ namespace Questionnaire
 
 
             //Get Services
-            Console.WriteLine("-------------------Welcome to the survey-------------------");
+
             Console.WriteLine($"The survet has {questions.Count()} Question");
+            Console.WriteLine("Each question has many options, You can answer the question by taping the number of the option.");
             Console.WriteLine("Each question has many options, You can answer the question by taping the number of the option.");
             Console.WriteLine("Once saved, you can't change your answer");
             Console.WriteLine("\n\n\n**Personal informations ");

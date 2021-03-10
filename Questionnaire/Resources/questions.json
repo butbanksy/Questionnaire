@@ -1,240 +1,195 @@
 [
   {
-    "id": 1,
-    "Title": "Quisque porta volutpat erat.",
-    "options": [
-      {
-        "id": 1,
-        "option": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo."
-      },
-      {
-        "id": 2,
-        "option": "Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl."
-      },
-      {
-        "id": 3,
-        "option": "Aenean auctor gravida sem."
-      },
-      {
-        "id": 4,
-        "option": "In sagittis dui vel nisl."
-      }
-    ]
-  },
-  {
     "id": 2,
-    "Title": "In hac habitasse platea dictumst.",
+    "Title": "The instructor was well prepared for the class.",
     "options": [
       {
         "id": 1,
-        "option":
-          "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio."
+        "option": "Almost always"
       },
       {
         "id": 2,
-        "option": "Morbi a ipsum."
+        "option": "Frequently"
       },
       {
         "id": 3,
-        "option":
-          "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc."
+        "option": "Sometimes"
       },
       {
         "id": 4,
-        "option": "Integer ac leo."
+        "option": "Rarely"
+      }, {
+        "id": 5,
+        "option": "Almost never"
       }
     ]
-  },
-  {
+  }, {
     "id": 3,
-    "Title": "Sed accumsan felis.",
+    "Title": "The instructor showed an interest in helping students learn.",
     "options": [
       {
         "id": 1,
-        "option": "Maecenas pulvinar lobortis est."
+        "option": "Almost always"
       },
       {
         "id": 2,
-        "option": "Donec quis orci eget orci vehicula condimentum."
+        "option": "Frequently"
       },
       {
         "id": 3,
-        "option": "In est risus, auctor sed, tristique in, tempus sit amet, sem."
+        "option": "Sometimes"
       },
       {
         "id": 4,
-        "option": "Suspendisse potenti."
-      },
-      {
+        "option": "Rarely"
+      }, {
         "id": 5,
-        "option": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
+        "option": "Almost never"
       }
     ]
-  },
-  {
+  }, {
+    "id": 3,
+    "Title": "I received useful feedback on my performance on tests, papers, etc...",
+    "options": [
+      {
+        "id": 1,
+        "option": "Almost always"
+      },
+      {
+        "id": 2,
+        "option": "Frequently"
+      },
+      {
+        "id": 3,
+        "option": "Sometimes"
+      },
+      {
+        "id": 4,
+        "option": "Rarely"
+      }, {
+        "id": 5,
+        "option": "Almost never"
+      }
+    ]
+  }, {
     "id": 4,
-    "title": "Cras in purus eu magna vulputate luctus.",
+    "Title": "The lectures, tests, and assignments complemented each other",
     "options": [
       {
         "id": 1,
-        "option": "Curabitur at ipsum ac tellus semper interdum."
+        "option": "Strongly agree"
       },
       {
         "id": 2,
-        "option": "Morbi non lectus."
+        "option": "Agree"
       },
       {
         "id": 3,
-        "option": "In eleifend quam a odio."
+        "option": "Neither agree nor disagree"
       },
       {
         "id": 4,
-        "option": "Curabitur gravida nisi at nibh."
+        "option": "Disagree"
+      }, {
+        "id": 5,
+        "option": "Strongly disagree"
       }
     ]
-  },
-  {
+  }, {
     "id": 5,
-    "title": "Integer tincidunt ante vel ipsum.",
+    "Title":
+      "The instructional materials (i.e, books, readings, handouts, study guides, lab manuals, multimedia, software) increased my knowledge and skills in the subject matter.",
     "options": [
       {
         "id": 1,
-        "option": "Nullam molestie nibh in lectus."
+        "option": "Strongly agree"
       },
       {
         "id": 2,
-        "option": "In blandit ultrices enim."
+        "option": "Agree"
       },
       {
         "id": 3,
-        "option": "Curabitur gravida nisi at nibh."
+        "option": "Neither agree nor disagree"
       },
       {
         "id": 4,
-        "option": "Maecenas ut massa quis augue luctus tincidunt."
-      },
-      {
+        "option": "Disagree"
+      }, {
         "id": 5,
-        "option": "Duis mattis egestas metus."
+        "option": "Strongly disagree"
       }
     ]
-  },
-  {
+  }, {
     "id": 6,
-    "title": "Nam tristique tortor eu pede.",
+    "Title": "The course was organized in a manner that helped me understand the underlying concepts",
     "options": [
       {
         "id": 1,
-        "option": "Cras in purus eu magna vulputate luctus."
+        "option": "Strongly agree"
       },
       {
         "id": 2,
-        "option": "Donec semper sapien a libero."
+        "option": "Agree"
       },
       {
         "id": 3,
-        "option":
-          "In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem."
+        "option": "Neither agree nor disagree"
       },
       {
         "id": 4,
-        "option": "Aenean auctor gravida sem."
+        "option": "Disagree"
+      }, {
+        "id": 5,
+        "option": "Strongly disagree"
       }
     ]
-  },
-  {
+  }, {
     "id": 7,
-    "title": "Sed ante.",
+    "Title": "The course gave me the confidence to do more advanced work in the subject",
     "options": [
       {
         "id": 1,
-        "option": "Proin eu mi."
+        "option": "Strongly agree"
       },
       {
         "id": 2,
-        "option": "Etiam justo."
+        "option": "Agree"
       },
       {
         "id": 3,
-        "option": "Proin interdum mauris non ligula pellentesque ultrices."
+        "option": "Neither agree nor disagree"
       },
       {
         "id": 4,
-        "option": "Nam dui."
+        "option": "Disagree"
+      }, {
+        "id": 5,
+        "option": "Strongly disagree"
       }
     ]
-  },
-  {
+  }, {
     "id": 8,
-    "title": "Maecenas ut massa quis augue luctus tincidunt.",
+    "Title": "The examinations, projects measured my knowledge of the course material",
     "options": [
       {
         "id": 1,
-        "option": "Integer tincidunt ante vel ipsum."
+        "option": "Strongly agree"
       },
       {
         "id": 2,
-        "option": "Etiam justo."
+        "option": "Agree"
       },
       {
         "id": 3,
-        "option": "In sagittis dui vel nisl."
+        "option": "Neither agree nor disagree"
       },
       {
         "id": 4,
-        "option": "Suspendisse potenti."
-      },
-      {
+        "option": "Disagree"
+      }, {
         "id": 5,
-        "option": "Nam nulla."
-      }
-    ]
-  },
-  {
-    "id": 9,
-    "title": "Aenean auctor gravida sem.",
-    "options": [
-      {
-        "id": 1,
-        "option": "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus."
-      },
-      {
-        "id": 2,
-        "option": "Aliquam erat volutpat."
-      },
-      {
-        "id": 3,
-        "option": "Maecenas ut massa quis augue luctus tincidunt."
-      },
-      {
-        "id": 4,
-        "option": "Nulla mollis molestie lorem."
-      }
-    ]
-  },
-  {
-    "id": 10,
-    "title": "Donec vitae nisi.",
-    "options": [
-      {
-        "id": 1,
-        "option": "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis."
-      },
-      {
-        "id": 2,
-        "option": "Sed ante."
-      },
-      {
-        "id": 3,
-        "option": "Nunc nisl."
-      },
-      {
-        "id": 4,
-        "option": "Maecenas pulvinar lobortis est."
-      },
-      {
-        "id": 5,
-        "option": "Maecenas ut massa quis augue luctus tincidunt."
+        "option": "Strongly disagree"
       }
     ]
   }
