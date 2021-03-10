@@ -1,9 +1,9 @@
-﻿using System.Text.Json;
-using System;
+﻿using System;
+using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
+using Questionnaire.Helpers.DIHelpers;
 using Questionnaire.Helpers.StringHelpers;
 using Questionnaire.Interfaces.Services;
-using System.Linq;
-using Questionnaire.Implementations.Repositories;
 using Questionnaire.Models;
 
 namespace Questionnaire
@@ -16,8 +16,13 @@ namespace Questionnaire
             string username = "";
             string email = "";
 
-            //services
-            IQuestionService questionServices;
+            //register services
+            //register dependecies
+            var serviceProvider = DIHelpers.getServiceProvider();
+
+
+            //get service instance
+            IQuestionService questionServices = serviceProvider.GetService<IQuestionService>();
 
 
             //Get Services
@@ -50,17 +55,18 @@ namespace Questionnaire
             User user = new User(username, email);
 
 
-            JsonQuestionRepository json = new JsonQuestionRepository();
-
-            var questions = json.GetQuestions();
             Console.WriteLine("Tape any key to start the Survey");
             Console.ReadLine();
             Console.Clear();
 
-            foreach (var question in questions)
-            {
-                Console.WriteLine($"{question.Id} : {question.Title}");
-            }
+            //Showing questions
+            var questions = questionServices.GetQuestions();
+            questions.ToList().ForEach(q => Console.WriteLine(q));
+
+
+
+
         }
+
     }
 }
