@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Questionnaire.Implementations.Repositories;
 using QuestionnaireMVC.Models;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,14 @@ namespace QuestionnaireMVC.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public JsonResult Index()
         {
-            return View();
+
+            JsonQuestionRepository repo = new JsonQuestionRepository();
+            
+            
+
+            return Json(repo.GetQuestions());
         }
 
         public IActionResult Privacy()
