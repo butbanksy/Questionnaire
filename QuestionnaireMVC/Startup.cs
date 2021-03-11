@@ -16,6 +16,7 @@ using Questionnaire.Implementations.Repositories;
 using Questionnaire.Implementations.Services;
 using Questionnaire.Interfaces.Repositories;
 using Questionnaire.Interfaces.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace QuestionnaireMVC
 {
@@ -37,6 +38,14 @@ namespace QuestionnaireMVC
             services.AddSingleton<IUserService, UserServiceImpl>();
             services.AddSingleton<IUserRepository, JsonUserRepository>();
             services.AddSingleton<IQuestionService, QuestionServiceImpl>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +68,8 @@ namespace QuestionnaireMVC
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

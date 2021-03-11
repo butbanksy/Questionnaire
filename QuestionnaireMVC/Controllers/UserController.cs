@@ -15,12 +15,12 @@ namespace QuestionnaireMVC.Controllers
     public class UserController : Controller
     {
         private IUserService _serviceUser;
-        private HttpContext _context;
+        private readonly HttpContext _context;
 
-        public UserController(IUserService serviceUser, HttpContext context)
+        public UserController(IUserService serviceUser, IHttpContextAccessor contextAccessor)
         {
             _serviceUser = serviceUser;
-            _context = context;
+            _context = contextAccessor.HttpContext;
         }
 
         public ActionResult Index()
