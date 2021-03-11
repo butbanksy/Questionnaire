@@ -16,7 +16,9 @@ namespace QuestionnaireMVC.Controllers
         readonly IQuestionService _questionService;
         readonly IAnswerService _answerService;
         private readonly IUserService _userService;
-        public QuestionController(IQuestionService questionService, IAnswerService answerService, IUserService userService)
+
+        public QuestionController(IQuestionService questionService, IAnswerService answerService,
+            IUserService userService)
         {
             _questionService = questionService;
             _answerService = answerService;
@@ -49,9 +51,8 @@ namespace QuestionnaireMVC.Controllers
         // POST: QuestionController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Create(Object[] obj)
+        public RedirectToActionResult Create(Object[] obj)
         {
-
             User user = HttpContext.Session.GetComplexData<User>("currentUser");
             var x = Request.Form.ToList();
             try
@@ -59,23 +60,24 @@ namespace QuestionnaireMVC.Controllers
                 var i = 1;
                 foreach (KeyValuePair<string, Microsoft.Extensions.Primitives.StringValues> entry in x)
                 {
-                    if(i < x.Count()) { 
-                    var indexes = entry.Value.Select(x=>Int32.Parse(x)).ToArray();
+                    if (i < x.Count())
+                    {
+                        var indexes = entry.Value.Select(x => Int32.Parse(x)).ToArray();
 
-                    Answer answer = _answerService.SubmitAnswer(Int32.Parse(entry.Key), user.Id, indexes);
-                    _userService.AddAnswer(user, answer);
-                    i++;
+                        Answer answer = _answerService.SubmitAnswer(Int32.Parse(entry.Key), user.Id, indexes);
+                        _userService.AddAnswer(user, answer);
+                        i++;
                     }
                 }
 
-                user.TimeOfCompletion = new DateTime((int)new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds() - user.Id);
+                user.TimeOfCompletion =
+                    new DateTime((int) new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds() - user.Id);
                 _userService.AddUser(user);
-                return Json(user);
+                return RedirectToAction("Index", "Statistics");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                
-                return Json(e);
+                throw e;
             }
         }
 

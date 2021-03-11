@@ -33,18 +33,18 @@ namespace QuestionnaireMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<IStatisticsService, StatisticsService>();
+            services.AddTransient<IStatisticsService, StatisticsService>();
             services.AddSingleton<IQuestionRepository, JsonQuestionRepository>();
-            services.AddSingleton<IUserService, UserServiceImpl>();
+            services.AddTransient<IUserService, UserServiceImpl>();
             services.AddSingleton<IUserRepository, JsonUserRepository>();
-            services.AddSingleton<IQuestionService, QuestionServiceImpl>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<IAnswerService, AnswerServiceImpl>();
+            services.AddTransient<IQuestionService, QuestionServiceImpl>();
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IAnswerService, AnswerServiceImpl>();
             services.AddSingleton<IAnswerRepository, AnswerRepository>();
 
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.IdleTimeout = TimeSpan.FromHours(24);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
