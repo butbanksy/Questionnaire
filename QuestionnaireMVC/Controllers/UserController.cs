@@ -6,6 +6,7 @@ using Questionnaire.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace QuestionnaireMVC.Controllers
@@ -14,10 +15,12 @@ namespace QuestionnaireMVC.Controllers
     public class UserController : Controller
     {
         private IUserService _serviceUser;
+        private HttpContext _context;
 
-        public UserController(IUserService serviceUser)
+        public UserController(IUserService serviceUser, HttpContext context)
         {
             _serviceUser = serviceUser;
+            _context = context;
         }
 
         public ActionResult Index()
@@ -32,9 +35,10 @@ namespace QuestionnaireMVC.Controllers
         {
 
             user.GenerateUserId();
-           // _serviceUser.AddUser(user);
-
-            return RedirectToAction("/Questions",user);
+            // _serviceUser.AddUser(user);
+            var str = JsonSerializer.Serialize<User>(user);
+            _context.Session.SetString("currentUser",str);
+            return RedirectToAction("Index","Statistics");
         }
 
 
