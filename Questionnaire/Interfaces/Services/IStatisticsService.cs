@@ -11,6 +11,7 @@ namespace Questionnaire.Interfaces.Services
     {
         public int GetUsersCount(); 
         public IDictionary<int,int> GetCountOptionsPerQuestion(Question question);
+        public List<int> GetCountOptionsPerQuestionList(Question question);
 
         public DateTime GetSpentTimePerUser(User user);
         public DateTime GetAvgSpentTimePerUser(User user);

@@ -9,24 +9,29 @@ using System.Threading.Tasks;
 
 namespace Questionnaire.Implementations.Services
 {
-    class QuestionServiceImpl : IQuestionService
+    public class QuestionServiceImpl : IQuestionService
     {
-
         private readonly IQuestionRepository _questionRepository;
 
         public QuestionServiceImpl(IQuestionRepository questionRepository)
         {
             this._questionRepository = questionRepository;
         }
+
         public IEnumerable<Question> GetQuestions()
         {
             return _questionRepository.GetQuestions();
         }
+
         public Question GetQuestionById(int id)
         {
             return _questionRepository.GetQuestionById(id);
         }
 
-        
+        public IEnumerable<Option> GetQuestionOptions(int id)
+        {
+            var question = GetQuestionById(id);
+            return question.Options;
+        }
     }
 }
