@@ -1,0 +1,26 @@
+﻿@model Questionnaire.Models.User
+
+<div class="card">
+    <div class="card-header">Login</div>
+    <div class="card-body">
+
+        <form method="post" >
+
+            <div class="form-group">
+                <label for="email">Enter you Email please</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="email" required value="@Model.Email">
+            </div>
+
+            <div class="form-group">
+                <label for="pass">Enter you Name please</label>
+                <input type="text" class="form-control" name="name" id="pass" placeholder="name" required value="@Model.Name">
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary" name="submit" id="submit">Go to Questions</button>
+        </form>
+
+
+    </div>
+</div>

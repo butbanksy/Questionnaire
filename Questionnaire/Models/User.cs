@@ -30,5 +30,10 @@ namespace Questionnaire.Models
         {
             return $"\n Name : {Name}, Email: {Email}";
         }
+
+        public void GenerateUserId()
+        {
+            Id = (int)new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+        }
     }
 }
