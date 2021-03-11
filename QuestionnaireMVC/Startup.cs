@@ -12,6 +12,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Questionnaire.Implementations.Repositories;
+using Questionnaire.Implementations.Services;
+using Questionnaire.Interfaces.Repositories;
+using Questionnaire.Interfaces.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace QuestionnaireMVC
 {
@@ -22,18 +27,27 @@ namespace QuestionnaireMVC
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }    
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSingleton<IStatisticsService, StatisticsService>();
             services.AddSingleton<IQuestionRepository, JsonQuestionRepository>();
             services.AddSingleton<IUserService, UserServiceImpl>();
+            services.AddSingleton<IUserRepository, JsonUserRepository>();
             services.AddSingleton<IQuestionService, QuestionServiceImpl>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IAnswerService, AnswerServiceImpl>();
             services.AddSingleton<IAnswerRepository, AnswerRepository>();
-            services.AddSingleton<IUserRepository, JsonUserRepository>();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,12 +63,15 @@ namespace QuestionnaireMVC
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Questionnaire.Interfaces.Services;
 using Questionnaire.Models;
+using QuestionnaireMVC.Helpers;
 using QuestionnaireMVC.Models;
 using System;
 using System.Collections.Generic;
@@ -15,20 +16,11 @@ namespace QuestionnaireMVC.Controllers
         readonly IQuestionService _questionService;
         readonly IAnswerService _answerService;
         private readonly IUserService _userService;
-        readonly User user;
         public QuestionController(IQuestionService questionService, IAnswerService answerService, IUserService userService)
         {
             _questionService = questionService;
             _answerService = answerService;
             _userService = userService;
-            user = new User
-            {
-                Id = (int)new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds(),
-                Email = "mrhazzoul@gmail.com",
-                Name = "rhazzoul",
-                Answers = new List<Answer>(),
-
-        };
         }
 
         // GET: QuestionController
@@ -60,6 +52,7 @@ namespace QuestionnaireMVC.Controllers
         public JsonResult Create(Object[] obj)
         {
 
+            User user = HttpContext.Session.GetComplexData<User>("currentUser");
             var x = Request.Form.ToList();
             try
             {

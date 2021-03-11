@@ -19,14 +19,10 @@ namespace QuestionnaireMVC.Controllers
             _logger = logger;
         }
 
-        public JsonResult Index()
+        public IActionResult Index()
         {
 
-            JsonQuestionRepository repo = new JsonQuestionRepository();
-            
-            
-
-            return Json(repo.GetQuestions());
+            return View();
         }
 
         public IActionResult Privacy()
@@ -38,6 +34,12 @@ namespace QuestionnaireMVC.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+
+        public void handleClick()
+        {
+            Console.WriteLine("click");
         }
     }
 }
