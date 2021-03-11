@@ -18,11 +18,11 @@ namespace Questionnaire.Helpers
 
             if(typeof(Question) == typeof(T))
             {
-                path = $"../../../Resources/questions.json";
+                path = $"../Resources/questions.json";
                 Console.WriteLine(typeof(T));
             }else if(typeof(User) == typeof(T))
             {
-                path = $"../../../Resources/users.json";
+                path = $"../Resources/users.json";
             }
 
 
@@ -44,12 +44,12 @@ namespace Questionnaire.Helpers
 
             if (typeof(Question) == typeof(T))
             {
-                path = $"../../../Resources/questions.json";
+                path = $"../Resources/questions.json";
                 Console.WriteLine(typeof(T));
             }
             else if (typeof(User) == typeof(T))
             {
-                path = $"../../../Resources/users.json";
+                path = $"../Resources/users.json";
             }
 
             string jsonString = JsonSerializer.Serialize(_data);
