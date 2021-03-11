@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+}
+@model CheckBoxListViewModel
+
+<div class="container">
+    <div class="col-md-8">
+        <h2>Questionnaire</h2>
+        <p>The survey has @Model.questions.Count() questions</p>
+        <p>Each question has many options, You can answer the question by taping the number of the option.</p>
+        <p>Once saved, you can't change your answer</p>
+    </div>
+    <form asp-action="Create">
+        @foreach (var question in Model.questions)
+        {
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        Question @question.Id
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@question.Title</h5>
+                        @foreach (var option in question.Options)
+                        {
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <div class="form-check">
+                                        <input class="form-check-input" required type="radio" value="@option.Id" name="@question.Id" id="checkBox{@question.Id}-{@option.Id}" aria-label="Checkbox for following text input">
+                                        <label class="form-check-label" for="checkBox{@question.Id}-{@option.Id}">  
+                                            @option.Title
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </form>
+    
+
+</div>

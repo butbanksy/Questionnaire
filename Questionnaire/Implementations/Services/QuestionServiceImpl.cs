@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Questionnaire.Implementations.Services
 {
-    class QuestionServiceImpl : IQuestionService
+    public class QuestionServiceImpl : IQuestionService
     {
 
         private readonly IQuestionRepository _questionRepository;

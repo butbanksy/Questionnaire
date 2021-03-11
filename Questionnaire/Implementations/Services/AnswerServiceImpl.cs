@@ -10,14 +10,16 @@ using Questionnaire.Models;
 
 namespace Questionnaire.Implementations.Services
 {
-    class AnswerServiceImpl : IAnswerService
+    public class AnswerServiceImpl : IAnswerService
     {
 
-        IAnswerRepository _answerRepository;
+        private readonly IAnswerRepository _answerRepository;
+        private readonly IQuestionService _questionService;
 
-        public AnswerServiceImpl(IAnswerRepository answerRepository)
+        public AnswerServiceImpl(IAnswerRepository answerRepository, IQuestionService questionService)
         {
-            this._answerRepository = answerRepository;
+            _answerRepository = answerRepository;
+            _questionService = questionService;
         }
         public IEnumerable<Answer> GetAllAnswers()
         {
@@ -26,8 +28,8 @@ namespace Questionnaire.Implementations.Services
 
         public Answer GetAnswer(int[] indcies, Question q)
         {
-            IEnumerable<Option> options = indcies.ToList().Select(i => MainHelpers.getOption(i - 1 , q)).ToList();
-           // Option option = MainHelpers.getOption(indcies[0], q);
+            IEnumerable<Option> options = indcies.ToList().Select(i => MainHelpers.getOption(i - 1, q)).ToList();
+            // Option option = MainHelpers.getOption(indcies[0], q);
 
             Answer answer = new Answer()
             {
@@ -36,6 +38,20 @@ namespace Questionnaire.Implementations.Services
                 Options = options,
             };
 
+            return answer;
+        }
+
+        public Answer SubmitAnswer(int questionId, int userId, int[] indexes)
+        {
+            var question = _questionService.GetQuestionById(questionId);
+            IEnumerable<Option> options = indexes.ToList().Select(i => MainHelpers.getOption(i - 1, question)).ToList();
+
+            Answer answer = new Answer()
+            {
+                QuestionId = questionId,
+                Options = options,
+                UserId = userId
+            };
             return answer;
         }
     }

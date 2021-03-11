@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Questionnaire.Implementations.Services
 {
-    class UserServiceImpl : IUserService
+    public class UserServiceImpl : IUserService
     {
         IUserRepository _userRepository;
 

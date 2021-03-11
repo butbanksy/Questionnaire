@@ -7,9 +7,10 @@ using Questionnaire.Models;
 
 namespace Questionnaire.Interfaces.Services
 {
-    interface IAnswerService
+    public interface IAnswerService
     {
         Answer GetAnswer(int[] indecies, Question q);
         IEnumerable<Answer> GetAllAnswers();
+        Answer SubmitAnswer(int questionId, int userId, int[] id);
     }
 }
