@@ -11,5 +11,7 @@ namespace Questionnaire.Interfaces.Services
     {
         IEnumerable<Question> GetQuestions();
         Question GetQuestionById(int id);
+
+        IEnumerable<Option> GetQuestionOptions(int id);
     }
 }
