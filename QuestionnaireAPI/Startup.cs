@@ -35,13 +35,13 @@ namespace QuestionnaireAPI
         {
 
             services.AddControllers();
-            services.AddScoped<IStatisticsService, StatisticsService>();
             services.AddScoped<IQuestionRepository, SqlQuestionRepository>();
-            services.AddScoped<IUserService, UserServiceImpl>();
+            services.AddScoped<IAnswerRepository, AnswerRepository>();
             services.AddScoped<IUserRepository, JsonUserRepository>();
+            services.AddScoped<IStatisticsService, StatisticsService>();
+            services.AddScoped<IUserService, UserServiceImpl>();
             services.AddScoped<IQuestionService, QuestionServiceImpl>();
             services.AddScoped<IAnswerService, AnswerServiceImpl>();
-            services.AddScoped<IAnswerRepository, AnswerRepository>();
 
             services.AddSwaggerGen(c =>
             {

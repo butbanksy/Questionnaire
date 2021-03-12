@@ -1,7 +1,7 @@
 using Questionnaire.Models;
 using System.Collections.Generic;
 
-namespace QuestionnaireMVC.Interfaces.Services
+namespace QuestionnaireMVC.Business.Interfaces
 {
     public interface IUserService
     {

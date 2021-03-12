@@ -3,6 +3,8 @@ using System.Linq;
 using Questionnaire.Data;
 using Questionnaire.Interfaces.Repositories;
 using Questionnaire.Models;
+using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace Questionnaire.Implementations.Repositories
 {
@@ -15,17 +17,14 @@ namespace Questionnaire.Implementations.Repositories
             _context = context;
         }
 
-        public SqlQuestionRepository()
-        {
-        }
         public IEnumerable<Question> GetQuestions()
         {
-            return _context.Questions;
+            return _context.Questions.Include("Options");
         }
 
         public Question GetQuestionById(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Questions.Find(id);
         }
     }
 }
