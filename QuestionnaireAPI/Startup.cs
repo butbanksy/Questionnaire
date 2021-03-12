@@ -11,6 +11,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Questionnaire.Data;
+using Questionnaire.Implementations.Repositories;
+using Questionnaire.Implementations.Services;
+using Questionnaire.Interfaces.Repositories;
+using Questionnaire.Interfaces.Services;
 
 namespace QuestionnaireAPI
 {
@@ -28,9 +35,22 @@ namespace QuestionnaireAPI
         {
 
             services.AddControllers();
+            services.AddScoped<IStatisticsService, StatisticsService>();
+            services.AddScoped<IQuestionRepository, SqlQuestionRepository>();
+            services.AddScoped<IUserService, UserServiceImpl>();
+            services.AddScoped<IUserRepository, JsonUserRepository>();
+            services.AddScoped<IQuestionService, QuestionServiceImpl>();
+            services.AddScoped<IAnswerService, AnswerServiceImpl>();
+            services.AddScoped<IAnswerRepository, AnswerRepository>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "QuestionnaireAPI", Version = "v1" });
+            });
+
+            services.AddDbContext<QuestionnaireContext>(opt =>
+            {
+                opt.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
         }
 

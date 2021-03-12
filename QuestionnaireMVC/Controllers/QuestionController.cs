@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Questionnaire.Interfaces.Services;
 using Questionnaire.Models;
 using QuestionnaireMVC.Helpers;
@@ -16,37 +17,55 @@ namespace QuestionnaireMVC.Controllers
         readonly IQuestionService _questionService;
         readonly IAnswerService _answerService;
         private readonly IUserService _userService;
+        private readonly ILogger _logger;
 
         public QuestionController(IQuestionService questionService, IAnswerService answerService,
-            IUserService userService)
+            IUserService userService, ILogger<QuestionController> logger)
         {
             _questionService = questionService;
             _answerService = answerService;
             _userService = userService;
+            _logger = logger;
         }
 
         // GET: QuestionController
         public ActionResult Index()
         {
-            var questions = _questionService.GetQuestions().ToList();
-            CheckBoxListViewModel model = new CheckBoxListViewModel
+            _logger.LogInformation($"Question Index page");
+
+            try
             {
-                questions = questions
-            };
-            return View(model);
+                var questions = _questionService.GetQuestions().ToList();
+                _logger.LogInformation($"Questions index : Get all questions ...");
+                CheckBoxListViewModel model = new CheckBoxListViewModel
+                {
+                    questions = questions
+                };
+                return View(model);
+            }
+            catch(Exception e)
+            {
+                _logger.LogError($"Questions index : get questions " +
+                    $"\n{e.Message}");
+
+                return RedirectToAction("Error", "Home");
+            }
+
+            
+            
         }
 
-        // GET: QuestionController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        //// GET: QuestionController/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
-        // GET: QuestionController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //// GET: QuestionController/Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
         // POST: QuestionController/Create
         [HttpPost]
@@ -54,6 +73,7 @@ namespace QuestionnaireMVC.Controllers
         public RedirectToActionResult Create(Object[] obj)
         {
             User user = HttpContext.Session.GetComplexData<User>("currentUser");
+            _logger.LogInformation($"Question getCurrentUser {user.Name}");
             var x = Request.Form.ToList();
             try
             {
@@ -66,6 +86,7 @@ namespace QuestionnaireMVC.Controllers
 
                         Answer answer = _answerService.SubmitAnswer(Int32.Parse(entry.Key), user.Id, indexes);
                         _userService.AddAnswer(user, answer);
+                        _logger.LogInformation($"Add answer to user {user.Name} {answer}");
                         i++;
                     }
                 }
@@ -73,54 +94,56 @@ namespace QuestionnaireMVC.Controllers
                 user.TimeOfCompletion =
                     new DateTime((int) new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds() - user.Id);
                 _userService.AddUser(user);
+                _logger.LogInformation($"Add User {user.Name}");
                 return RedirectToAction("Index", "Statistics");
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.LogError($"Add new {e.Message}");
+                return RedirectToAction("Error", "Home");
             }
         }
 
-        // GET: QuestionController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        //// GET: QuestionController/Edit/5
+        //public ActionResult Edit(int id)
+        //{
+        //    return View();
+        //}
 
-        // POST: QuestionController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //// POST: QuestionController/Edit/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
-        // GET: QuestionController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        //// GET: QuestionController/Delete/5
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
 
-        // POST: QuestionController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //// POST: QuestionController/Delete/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Delete(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }
