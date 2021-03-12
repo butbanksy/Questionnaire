@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Questionnaire.Models;
 
-namespace Questionnaire.Interfaces.Services
+namespace QuestionnaireMVC.Business.Interfaces
 {
     public interface IAnswerService
     {
         Answer GetAnswer(int[] indecies, Question q);
-        IEnumerable<Answer> GetAllAnswers();
-        Answer SubmitAnswer(int questionId, int userId, int[] id);
+        Task<IEnumerable<Answer>> GetAllAnswers();
+        Task SubmitAnswer(int questionId, int userId, int[] id);
     }
 }

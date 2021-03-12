@@ -41,10 +41,9 @@ namespace Questionnaire.Implementations.Repositories
 
         public IEnumerable<User> GetUsers()
         {
-            return _users;
             try
             {
-                return _users.ToList();
+                return _users;
             }
             catch (Exception)
             {

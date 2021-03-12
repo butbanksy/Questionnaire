@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Questionnaire.Models;
 
-namespace Questionnaire.Interfaces.Services
+namespace QuestionnaireMVC.Business.Interfaces
 {
     public interface IStatisticsService
     {

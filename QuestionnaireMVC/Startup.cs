@@ -12,10 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Questionnaire.Implementations.Repositories;
-using Questionnaire.Implementations.Services;
-using Questionnaire.Interfaces.Repositories;
-using Questionnaire.Interfaces.Services;
+
 using Microsoft.AspNetCore.Http;
 
 namespace QuestionnaireMVC

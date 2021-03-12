@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Questionnaire.Models;
 
-namespace Questionnaire.Interfaces.Services
+namespace QuestionnaireMVC.Business.Interfaces
 {
     public interface IQuestionService
     {
-        IEnumerable<Question> GetQuestions();
-        Question GetQuestionById(int id);
+        
+        Task<Question> GetQuestionById(int id);
 
-        IEnumerable<Option> GetQuestionOptions(int id);
+        Task<IEnumerable<Option>> GetQuestionOptions(int id);
+        Task<IEnumerable<Question>> GetQuestions();
     }
 }
