@@ -1,6 +1,6 @@
-using Questionnaire.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using QuestionnaireMVC.Models;
 
 namespace QuestionnaireMVC.Business.Interfaces
 {

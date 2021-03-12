@@ -1,6 +1,6 @@
-﻿using Questionnaire.Models;
-using QuestionnaireMVC.Business.Interfaces;
+﻿using QuestionnaireMVC.Business.Interfaces;
 using QuestionnaireMVC.Helpers.GeneralHelpers;
+using QuestionnaireMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +48,7 @@ namespace QuestionnaireMVC.Business.Implementations
             return answer;
         }
 
-        public async Task SubmitAnswer(int questionId, int userId, int[] indexes)
+        public async Task<Answer> SubmitAnswer(int questionId, int userId, int[] indexes)
         {
             var question = _questionService.GetQuestionById(questionId).Result;
             IEnumerable<Option> options = indexes.ToList().Select(i => MainHelpers.getOption(i - 1, question)).ToList();
@@ -68,6 +68,8 @@ namespace QuestionnaireMVC.Business.Implementations
             using var httpResponse = await _httpClient.PostAsync($"{url}answerItemJson", answerItemJson);
 
             httpResponse.EnsureSuccessStatusCode();
+
+            return answer;
         }
     }
 }

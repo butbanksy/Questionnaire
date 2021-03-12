@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Questionnaire.Interfaces.Services;
-using Questionnaire.Models;
+using QuestionnaireMVC.Business.Interfaces;
 using QuestionnaireMVC.Helpers;
+using QuestionnaireMVC.Models;
 using System;
 using System.Collections.Generic;
 

@@ -1,5 +1,5 @@
-﻿using Questionnaire.Models;
-using QuestionnaireMVC.Business.Interfaces;
+﻿using QuestionnaireMVC.Business.Interfaces;
+using QuestionnaireMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

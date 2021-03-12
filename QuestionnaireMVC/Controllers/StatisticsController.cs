@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using Questionnaire.Interfaces.Services;
 using Microsoft.Extensions.Logging;
+using QuestionnaireMVC.Business.Interfaces;
 
 namespace QuestionnaireMVC.Controllers
 {
@@ -43,7 +43,7 @@ namespace QuestionnaireMVC.Controllers
             try
             {
                 var question = _questionService.GetQuestionById(id);
-                var statistics = _statisticsService.GetCountOptionsPerQuestionList(question);
+                var statistics = _statisticsService.GetCountOptionsPerQuestionList(question.Result);
                 _logger.LogInformation($"Generating Statistics ....");
                 return Json(statistics);
             }catch(Exception e)

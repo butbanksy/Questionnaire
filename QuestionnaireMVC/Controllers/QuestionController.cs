@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Questionnaire.Interfaces.Services;
-using Questionnaire.Models;
+using QuestionnaireMVC.Business.Interfaces;
 using QuestionnaireMVC.Helpers;
 using QuestionnaireMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace QuestionnaireMVC.Controllers
 {
@@ -35,7 +33,7 @@ namespace QuestionnaireMVC.Controllers
 
             try
             {
-                var questions = _questionService.GetQuestions().ToList();
+                var questions = _questionService.GetQuestions().Result.ToList();
                 _logger.LogInformation($"Questions index : Get all questions ...");
                 CheckBoxListViewModel model = new CheckBoxListViewModel
                 {
@@ -84,7 +82,7 @@ namespace QuestionnaireMVC.Controllers
                     {
                         var indexes = entry.Value.Select(x => Int32.Parse(x)).ToArray();
 
-                        Answer answer = _answerService.SubmitAnswer(Int32.Parse(entry.Key), user.Id, indexes);
+                        Answer answer = _answerService.SubmitAnswer(Int32.Parse(entry.Key), user.Id, indexes).Result;
                         _userService.AddAnswer(user, answer);
                         _logger.LogInformation($"Add answer to user {user.Name} {answer}");
                         i++;

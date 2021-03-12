@@ -3,21 +3,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Questionnaire.Implementations.Repositories;
-using Questionnaire.Implementations.Services;
-using Questionnaire.Interfaces.Repositories;
-using Questionnaire.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Questionnaire.Implementations.Repositories;
-using Questionnaire.Implementations.Services;
-using Questionnaire.Interfaces.Repositories;
-using Questionnaire.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.IO;
+using QuestionnaireMVC.Business.Interfaces;
+using QuestionnaireMVC.Business.Implementations;
 
 namespace QuestionnaireMVC
 {
@@ -34,14 +28,11 @@ namespace QuestionnaireMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddTransient<IStatisticsService, StatisticsService>();
-            services.AddSingleton<IQuestionRepository, JsonQuestionRepository>();
+            services.AddTransient<IStatisticsService, StatisticsServiceImpl>();
             services.AddTransient<IUserService, UserServiceImpl>();
-            services.AddSingleton<IUserRepository, JsonUserRepository>();
-            services.AddTransient<IQuestionService, QuestionServiceImpl>();
+            services.AddTransient<IQuestionService, QuestionsServiceImpl>();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IAnswerService, AnswerServiceImpl>();
-            services.AddSingleton<IAnswerRepository, AnswerRepository>();
 
             services.AddSession(options =>
             {
