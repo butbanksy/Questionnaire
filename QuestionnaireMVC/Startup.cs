@@ -1,22 +1,17 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Questionnaire.Implementations.Repositories;
-using Questionnaire.Implementations.Services;
-using Questionnaire.Interfaces.Repositories;
-using Questionnaire.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Questionnaire.Implementations.Repositories;
-using Questionnaire.Implementations.Services;
-using Questionnaire.Interfaces.Repositories;
-using Questionnaire.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using System.IO;
+using QuestionnaireMVC.Business.Interfaces;
+using QuestionnaireMVC.Business.Implementations;
 
 namespace QuestionnaireMVC
 {
@@ -33,14 +28,11 @@ namespace QuestionnaireMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddTransient<IStatisticsService, StatisticsService>();
-            services.AddSingleton<IQuestionRepository, JsonQuestionRepository>();
+            services.AddTransient<IStatisticsService, StatisticsServiceImpl>();
             services.AddTransient<IUserService, UserServiceImpl>();
-            services.AddSingleton<IUserRepository, JsonUserRepository>();
-            services.AddTransient<IQuestionService, QuestionServiceImpl>();
+            services.AddTransient<IQuestionService, QuestionsServiceImpl>();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IAnswerService, AnswerServiceImpl>();
-            services.AddSingleton<IAnswerRepository, AnswerRepository>();
 
             services.AddSession(options =>
             {
@@ -51,8 +43,11 @@ namespace QuestionnaireMVC
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+
+            var path = Directory.GetCurrentDirectory();
+            loggerFactory.AddFile($"{path}\\Logs\\Log.txt");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

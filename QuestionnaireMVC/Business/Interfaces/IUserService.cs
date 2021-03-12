@@ -1,15 +1,18 @@
-using Questionnaire.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using QuestionnaireMVC.Models;
 
 namespace QuestionnaireMVC.Business.Interfaces
 {
     public interface IUserService
     {
-     
+
         // dont forget to add answer in the process of adding users
-        void AddUser(User user);
-        void AddAnswer(User user, Answer answer);
-        IEnumerable<User> GetUsers();
+        Task AddUser(User user);
+        Task AddAnswer(User user, Answer answer);
+
+        Task AddAnswers(User user, IEnumerable<Answer> answer);
+        Task<IEnumerable<User>> GetUsers();
 
 
     }

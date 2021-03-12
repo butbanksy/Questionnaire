@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Questionnaire.Models
+namespace QuestionnaireMVC.Models
 {
     public class Answer
     {

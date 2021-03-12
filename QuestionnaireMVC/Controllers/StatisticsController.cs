@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Questionnaire.Interfaces.Repositories;
-using Questionnaire.Interfaces.Services;
+using Microsoft.Extensions.Logging;
+using QuestionnaireMVC.Business.Interfaces;
 
 namespace QuestionnaireMVC.Controllers
 {
@@ -12,37 +9,66 @@ namespace QuestionnaireMVC.Controllers
     {
         private readonly IStatisticsService _statisticsService;
         private readonly IQuestionService _questionService;
-        private readonly IQuestionRepository _questionRepository;
+        private readonly ILogger _logger;
 
-        public StatisticsController(IStatisticsService statisticsService, IQuestionRepository questionRepository,
-            IQuestionService questionService)
+        public StatisticsController(IStatisticsService statisticsService, IQuestionService questionService, ILogger<StatisticsController> logger)
         {
             _statisticsService = statisticsService;
-            _questionRepository = questionRepository;
             _questionService = questionService;
+            _logger = logger;
         }
 
 
         [Route("statistics")]
         public IActionResult Index()
         {
-            var questions = _questionService.GetQuestions();
-            return View(questions);
+
+            try
+            {
+                var questions = _questionService.GetQuestions();
+                _logger.LogInformation($"Getting All Questions ...");
+                return View(questions);
+            }catch(Exception e)
+            {
+                _logger.LogError($"Getting All Questions : {e.Message}");
+                return RedirectToAction("Error", "Home");
+            }
+
         }
 
         [Route("statistics/question/{id}")]
         public JsonResult GetNumberOfVotesPerOptionForQuestion(int id)
         {
-            var question = _questionRepository.GetQuestionById(id);
 
-            var statistics = _statisticsService.GetCountOptionsPerQuestionList(question);
-            return Json(statistics);
+            try
+            {
+                var question = _questionService.GetQuestionById(id);
+                var statistics = _statisticsService.GetCountOptionsPerQuestionList(question.Result);
+                _logger.LogInformation($"Generating Statistics ....");
+                return Json(statistics);
+            }catch(Exception e)
+            {
+                _logger.LogError($"Error in GetNumberOfVotesPerOptionForQuestion : Error while Getting data {e.Message}");
+                return Json($"Error in GetNumberOfVotesPerOptionForQuestion : Error while Getting data {e.Message}");
+            }
+            
         }
 
         [Route("statistics/questionOptions/{id}")]
         public JsonResult GetQuestionOptions(int id)
         {
-            return Json(_questionService.GetQuestionOptions(id));
+            try
+            {
+
+                _logger.LogInformation($"Get Question Options ....");
+                return Json(_questionService.GetQuestionOptions(id));
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error in GetQuestionOptions : Error while Getting data {e.Message}");
+                return Json($"Error in GetQuestionOptions : Error while Getting data {e.Message}");
+            }
         }
     }
 }
