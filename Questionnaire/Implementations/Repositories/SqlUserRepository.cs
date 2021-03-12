@@ -1,7 +1,9 @@
-﻿using Questionnaire.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Questionnaire.Data;
 using Questionnaire.Interfaces.Repositories;
 using Questionnaire.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Questionnaire.Implementations.Repositories
 {
@@ -21,12 +23,12 @@ namespace Questionnaire.Implementations.Repositories
 
         public User GetUserById(int id)
         {
-            return _context.Users.Find(id);
+            return _context.Users.Include("Answers").FirstOrDefault(u => u.Id == id);
         }
 
         public IEnumerable<User> GetUsers()
         {
-            return _context.Users;
+            return _context.Users.Include("Answers");
         }
     }
 }

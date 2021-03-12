@@ -24,7 +24,7 @@ namespace Questionnaire.Implementations.Repositories
 
         public Question GetQuestionById(int id)
         {
-            return _context.Questions.Find(id);
+            return _context.Questions.Include("Options").FirstOrDefault(q => q.Id == id);
         }
     }
 }

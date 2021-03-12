@@ -28,6 +28,13 @@ namespace QuestionnaireAPI.Controllers
         {
             return Ok(_userService.GetUsers());
         }
+        
+        [HttpGet("{id}")]
+        public ActionResult<User> Get(int id)
+        {
+            return _userService.GetUsers().First(u => u.Id == id);
+        }
+
 
 
         // POST api/<UserController>
