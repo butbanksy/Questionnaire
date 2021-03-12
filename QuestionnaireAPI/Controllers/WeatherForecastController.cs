@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Questionnaire.Implementations.Repositories;
+using Questionnaire.Interfaces.Services;
+using Questionnaire.Models;
 
 namespace QuestionnaireAPI.Controllers
 {
@@ -17,23 +20,18 @@ namespace QuestionnaireAPI.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IQuestionService _questionService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IQuestionService questionService)
         {
             _logger = logger;
+            _questionService = questionService;
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public ActionResult<IEnumerable<Question>> Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return Ok(_questionService.GetQuestions());
         }
     }
 }
